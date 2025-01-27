@@ -93,17 +93,17 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
         return new ArrayIterator($this->items);
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->items[$offset]);
     }
 
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->offsetExists($offset) ? $this->items[$offset] : null;
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->validateItemType($value);
 
@@ -114,12 +114,12 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
         }
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->items[$offset]);
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->items);
     }
@@ -147,7 +147,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
      *
      * @return \GeoJson\Geometry\GeometryCollection
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         $geometries = [];
         foreach ($this->items as $geometry) {
