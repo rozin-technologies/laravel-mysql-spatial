@@ -11,6 +11,7 @@ use Grimzy\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException;
 use Illuminate\Contracts\Support\Arrayable;
 use InvalidArgumentException;
 use IteratorAggregate;
+use Traversable;
 
 class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAccess, Arrayable, Countable
 {
@@ -87,7 +88,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
         return $this->items;
     }
 
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->items);
     }
